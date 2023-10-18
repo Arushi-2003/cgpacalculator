@@ -1,0 +1,186 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="external.css" />
+  </head>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("#butt1").click(function () {
+        $("#div1").fadeOut(1);
+      });
+    });
+  </script>
+
+  <style>
+    body {
+      font-size: xx-large;
+    }
+    h3 {
+      color: white;
+      text-align: center;
+      margin-top: 200px;
+    }
+    #val {
+      text-align: center;
+      box-sizing: border-box;
+      display: inline-block;
+      width: 200px;
+      padding: 10px 30px;
+      margin: 0px 700px;
+      border: 1px solid black;
+      border-radius: 40px;
+      font-size: large;
+      text-align: center;
+      /* overflow: hidden; */
+    }
+
+    input[type="text"] {
+      text-align: center;
+      box-sizing: border-box;
+      display: inline-block;
+      width: 200px;
+      padding: 10px 30px;
+      margin: 10px;
+      border: 1px solid black;
+      border-radius: 40px;
+      font-size: large;
+      text-align: center;
+      /* overflow: hidden; */
+    }
+    #butt1 {
+      color: black;
+      margin: 20px 750px;
+      padding: 10px 15px;
+      background-color: rgb(38, 221, 93);
+      border: 1px solid white;
+      border-radius: 10px;
+      width: 100px;
+    }
+    #butt1:hover {
+      color: white;
+      margin: 20px 750px;
+      padding: 10px 15px;
+      background-color: rgb(69, 13, 147);
+      border: 1px solid black;
+      border-radius: 20px;
+    }
+    input[type="button"] {
+      color: black;
+      margin: 20px 750px;
+      padding: 10px 15px;
+      background-color: rgb(38, 221, 93);
+      border: 1px solid white;
+      border-radius: 10px;
+      width: 100px;
+    }
+    input[type="button"]:hover {
+      color: white;
+      margin: 20px 750px;
+      padding: 10px 15px;
+      background-color: rgb(69, 13, 147);
+      border: 1px solid black;
+      border-radius: 20px;
+    }
+    .sem {
+      padding: 10px;
+      margin: 10px;
+      text-align: center;
+      color: white;
+    }
+    #table {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+    .div2 {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    #showCred {
+      color: white;
+      text-align: center;
+    }
+    #showCGPA{
+      color: white;
+      text-align: center;
+    }
+  </style>
+  <body>
+    <div id="div1">
+      <h3>Enter the number of semesters</h3>
+      <input type="text" id="val" placeholder="Type here" />
+
+      <button id="butt1" onClick="butt1()">submit</button>
+    </div>
+
+    <div id="table"></div>
+    <p id="showCGPA"></p>
+    <p id="showCred"></p>
+
+    <script>
+      const butt1 = () => {
+        const b = document.getElementById("val").value;
+        const semCount = document.getElementById("table");
+        semCount.innerHTML = "";
+
+        for (let i = 0; i < b; i++) {
+          const div2 = document.createElement("div");
+          div2.classList.add("div2");
+
+          const semDiv = document.createElement("div");
+          semDiv.classList.add("sem");
+
+          const semester = document.createElement("input");
+          semester.setAttribute("type", "text");
+          semester.placeholder = `Credits in sem ${i + 1}`;
+          semester.setAttribute("id", `crd${i + 1}`);
+
+          const cgpa = document.createElement("input");
+          cgpa.setAttribute("type", "text");
+          cgpa.placeholder = `GPA in sem ${i + 1}`;
+          cgpa.setAttribute("id", `gpa${i + 1}`);
+
+          semDiv.textContent = `Semester ${i + 1}`;
+
+          div2.appendChild(semDiv);
+          div2.appendChild(semester);
+          div2.appendChild(cgpa);
+          semCount.appendChild(div2);
+        }
+        const Calculate = document.createElement("input");
+        Calculate.setAttribute("type", "button");
+        Calculate.value = "Calculate";
+        semCount.appendChild(Calculate);
+        Calculate.addEventListener("click", cgpaCalculator);
+
+        function cgpaCalculator() {
+          let totalCred = 0;
+          let product = 0;
+
+          for (let j = 0; j < b; j++) {
+            let crd = "0";
+            let gpa = "0";
+
+            crd = document.getElementById(`crd${j + 1}`).value;
+            gpa = document.getElementById(`gpa${j + 1}`).value;
+
+            if (crd) {
+              totalCred += parseFloat(crd);
+              product += parseFloat(crd) * parseFloat(gpa);
+            }
+          }
+          let cgpa = product / totalCred;
+
+          document.getElementById('showCGPA').innerHTML = `<big><big>CGPA: ${cgpa.toFixed(2)}</big></big>`;
+          document.getElementById('showCred').innerHTML = `<big><big>Total Credits: ${totalCred}</big></big>`;
+        }
+      };
+    </script>
+  </body>
+</html>
