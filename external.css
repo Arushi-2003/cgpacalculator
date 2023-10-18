@@ -4,6 +4,7 @@ body {
   display: grid;
   align-items: center;
   overflow: hidden;
+  align-content: center;
 }
 
 /* nav bar */
