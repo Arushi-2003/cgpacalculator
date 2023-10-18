@@ -3,7 +3,6 @@ body {
   background-color: rgb(4, 16, 18);
   display: grid;
   align-items: center;
-  overflow-x: hidden;
 }
 
 /* nav bar */
