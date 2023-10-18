@@ -2,6 +2,7 @@ body {
   font-size: 28px;
   background-color: rgb(4, 16, 18);
   display: grid;
+  align-items: center;
 }
 
 /* nav bar */
