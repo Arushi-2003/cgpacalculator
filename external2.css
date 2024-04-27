@@ -4,7 +4,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow:hidden;
+  overflow-x:hidden;
 }
 
 /* nav bar */
@@ -59,8 +59,8 @@ li a.two:hover {
   color: #011614;
 }
 
-/* @media only screen and (min-width: 480px) and (max-width: 768px) {
+@media only screen and (min-width: 480px) and (max-width: 768px) {
   .content {
       width: 100%;
   }
-} */
+}
